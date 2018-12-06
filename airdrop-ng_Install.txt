@@ -1,0 +1,52 @@
+#The following instructions are to install airdrop-ng on Kali 1.x
+
+cd /usr/src
+apt-get install libpcap0.8-dev libnl-dev # if this command giver errors run the following command
+apt-get install libpcap0.8 libnl-dev
+
+
+git clone https://code.google.com/p/lorcon
+cd lorcon
+./configure --libdir=/usr/lib
+make
+make install
+
+cd pylorcon2
+python setup.py build
+python setup.py install
+cd ../ruby-lorcon/
+ruby extconf.rb
+make
+make install
+
+git clone https://github.com/aircrack-ng/aircrack-ng.git
+cd aircrack-ng/scripts/airdrop-ng
+make install
+airodump-ng-oui-update
+
+cp /usr/local/etc/aircrack-ng/airodump-ng-oui.txt /usr/local/lib/python2.7/dist-packages/airdrop/support/oui.txt
+-----------------------------------------------------------------------------------
+For Kali 2
+cd /usr/src
+
+apt-get install libpcap-dev libnl-3-dev
+
+git clone https://code.google.com/p/lorcon
+cd lorcon
+./configure --libdir=/usr/lib
+make
+make install
+
+
+cd pylorcon2
+python setup.py build
+python setup.py install
+cd ../ruby-lorcon/
+ruby extconf.rb
+make
+make install
+
+git clone https://github.com/aircrack-ng/aircrack-ng.git
+cd aircrack-ng/scripts/airdrop-ng
+make install
+airodump-ng-oui-update
